@@ -247,11 +247,9 @@ echo 'PROMPT=\"$prompt\"' >> /root/.zshrc
 echo '[core]\n    prompt = $prompt' >> /root/.gitconfig
 echo 'import sys\nsys.ps1 = \"$prompt\"' >> /root/.
 
-Sure, let's continue with the remaining parts of the script:
-
-```powershell
 # Python
 $pythonProfilePath = "$env:USERPROFILE\.pythonrc"
+
 if (-not (Test-Path -Path $pythonProfilePath)) {
     New-Item -ItemType File -Path $pythonProfilePath -Force
 }
@@ -264,6 +262,7 @@ echo 'PROMPT=\"$prompt\"' >> /root/.zshrc
 echo '[core]\n    prompt = $prompt' >> /root/.gitconfig
 echo 'import sys\nsys.ps1 = \"$prompt\"' >> /root/.pythonrc
 "
+```
 
 # Install youtube-dl on Kali Linux
 wsl -d kali-linux -u root -- bash -c "
