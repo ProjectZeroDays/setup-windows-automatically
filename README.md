@@ -1,7 +1,3 @@
-Sure, let's continue with the remaining parts of the README:
-
----
-
 # PowerShell Script for System Setup and Configuration
 
 ## Overview
