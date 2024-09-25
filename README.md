@@ -1,10 +1,10 @@
-# PowerShell Script for System Setup and Configuration
+# A PowerShell Script For The Automated Windows & Kali Linux WSL System Setup & Configuration (My Personal Setup)
 
 ## Overview
 
 This PowerShell script performs several tasks to set up and configure your system. It includes changing the execution policy, installing various tools and applications on both Windows and Kali Linux, and configuring system settings.
 
-## Prerequisites
+### Prerequisites
 
 - Windows operating system with administrative privileges.
 - Internet connection to download necessary files and packages.
@@ -12,7 +12,7 @@ This PowerShell script performs several tasks to set up and configure your syste
 
 ## Script Details
 
-### Change Execution Policy
+### Change Execution Policy For Powershell on Windows
 
 The script changes the PowerShell execution policy to `Unrestricted` to allow all scripts to run.
 
@@ -29,7 +29,7 @@ $newPolicy = Get-ExecutionPolicy
 Write-Output "New Execution Policy: $newPolicy"
 ```
 
-### Install PowerShell 7
+### Install PowerShell 7 on Windows & Kali Linux WSL
 
 The script installs PowerShell 7.
 
@@ -39,7 +39,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/PowerShell-7.2.3-win-x64.msi'))
 ```
 
-### Install Chocolatey
+### Install Chocolatey on Windows
 
 The script installs the Chocolatey package manager.
 
@@ -49,7 +49,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
 
-### Install ADB and Fastboot
+### Install ADB and Fastboot on Windows & Kali Linux WSL
 
 The script installs ADB and Fastboot on both Windows and Kali Linux.
 
@@ -64,7 +64,7 @@ apt update && apt install -y android-tools-adb android-tools-fastboot
 "
 ```
 
-### Install iCloud and iTunes
+### Install iCloud and iTunes on Windows
 
 The script installs iCloud and iTunes on Windows.
 
@@ -77,7 +77,7 @@ Start-Process -FilePath "$env:TEMP\iCloudSetup.exe" -ArgumentList '/quiet' -Wait
 Start-Process -FilePath "$env:TEMP\iTunesSetup.exe" -ArgumentList '/quiet' -Wait
 ```
 
-### Install Apktool
+### Install Apktool on Windows
 
 The script installs Apktool on Windows.
 
@@ -88,7 +88,7 @@ Invoke-WebRequest -Uri $apktoolInstaller -OutFile "$env:WINDIR\apktool.jar"
 Invoke-WebRequest -Uri $apktoolScript -OutFile "$env:WINDIR\apktool.bat"
 ```
 
-### Install Ghidra
+### Install Ghidra on Windows
 
 The script installs Ghidra on Windows.
 
@@ -98,7 +98,7 @@ Invoke-WebRequest -Uri $ghidraInstaller -OutFile "$env:TEMP\ghidra.zip"
 Expand-Archive -Path "$env:TEMP\ghidra.zip" -DestinationPath "C:\Program Files\Ghidra"
 ```
 
-### Install Wireshark
+### Install Wireshark on Windows & Kali Linux WSL
 
 The script installs Wireshark on both Windows and Kali Linux.
 
@@ -112,7 +112,7 @@ apt update && apt install -y wireshark
 "
 ```
 
-### Configure Wireshark to Share Database with Metasploit
+### Configure Wireshark to Share Database with Metasploit on Kali Linux
 
 The script configures Wireshark to share its database with Metasploit on Kali Linux.
 
@@ -122,7 +122,7 @@ echo 'db_connect msf:password@localhost/msf' >> /etc/metasploit/msfconsole.rc
 "
 ```
 
-### Install Ncat
+### Install Ncat on Windows & Kali Linux WSL
 
 The script installs Ncat on both Windows and Kali Linux.
 
@@ -136,7 +136,7 @@ apt update && apt install -y ncat
 "
 ```
 
-### Install Pcap Tools
+### Install PCAP Tools on Windows & Kali Linux WSL
 
 The script installs Pcap tools on both Windows and Kali Linux.
 
@@ -150,7 +150,7 @@ apt update && apt install -y libpcap-dev
 "
 ```
 
-### Install Hashcat
+### Install Hashcat on Windows and Kali WSL
 
 The script installs Hashcat on both Windows and Kali Linux.
 
@@ -164,7 +164,7 @@ apt update && apt install -y hashcat
 "
 ```
 
-### Install Wifite3
+### Install Wifite3 on Windows & Kali Linux WSL
 
 The script installs Wifite3 on both Windows and Kali Linux.
 
@@ -178,7 +178,7 @@ apt update && apt install -y wifite
 "
 ```
 
-### Change Desktop Wallpaper Every 5 Minutes on Kali Linux
+### Change Desktop Wallpaper Every 5 Minutes on Kali Linux WSL
 
 The script sets up a cron job to change the desktop wallpaper every 5 minutes on Kali Linux.
 
@@ -189,7 +189,7 @@ apt install -y feh
 "
 ```
 
-### Remove Games and Bloatware from Windows
+### Remove Games & Bloatware From Windows
 
 The script removes games and bloatware from Windows.
 
@@ -198,9 +198,9 @@ Get-AppxPackage -AllUsers | Where-Object { $_.Name -like "*Xbox*" -or $_.Name -l
 Get-AppxProvisionedPackage -Online | Where-Object { $_.DisplayName -like "*Xbox*" -or $_.DisplayName -like "*Zune*" -or $_.DisplayName -like "*Bing*" } | Remove-AppxProvisionedPackage -Online
 ```
 
-### Set Prompt on All Terminals
+### Set Prompt on All Terminals on Windows & Kali Linux 
 
-The script sets a custom prompt on various terminals.
+The script sets a custom prompt on various terminals on both Windows & Kali Linux.
 
 ```powershell
 $prompt = 'IEatDicks@ndGobbleBalls:  '
@@ -264,43 +264,59 @@ echo 'import sys\nsys.ps1 = \"$prompt\"' >> /root/.pythonrc
 "
 ```
 
+### Installs youtube-dl on Kali Linux
+```powershell
 # Install youtube-dl on Kali Linux
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y youtube-dl
 "
+```
 
-# Install Synapse on Kali Linux
+### Install Synapse on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y synapse
 "
+```
 
-# Install Snapd on Kali Linux
+### Install Snapd on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y snapd
 systemctl enable --now snapd apparmor
 "
+```
 
-# Install Snap Store on Kali Linux
+### Install Snap Store on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 snap install snap-store
 "
+```
 
-# Install Gdebi on Kali Linux
+### Install Gdebi on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y gdebi
 "
+```
 
-# Install Kodachi tools on Kali Linux
+### Install Kodachi Tools on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y tor privoxy bleachbit secure-delete
 "
+```
 
-# Install Kodachi tools on Windows
+### Install Kodachi Tools on Windows
+```powershell
 choco install tor -y
 choco install privoxy -y
 choco install bleachbit -y
+```
 
-# Configure Kodachi privacy settings on Kali Linux
+### Configure Kodachi Linux Privacy Settings on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 echo 'forward-socks5 / 127.0.0.1:9050 .' >> /etc/privoxy/config
 systemctl enable tor
@@ -308,68 +324,86 @@ systemctl start tor
 systemctl enable privoxy
 systemctl start privoxy
 "
+```
 
-# Install John the Ripper on Windows
+### Install John the Ripper on Windows
+```powershell
 choco install john -y
+```
 
-# Install Hydra on Windows
+### Install Hydra on Windows
+```powershell
 choco install hydra -y
+```
 
-# Install John the Ripper on Kali Linux
-wsl -d kali-linux -u root -- bash -c "
-apt update && apt install -y john
-"
-
-# Install Hydra on Kali Linux
-wsl -d kali-linux -u root -- bash -c "
-apt update && apt install -y hydra
-"
-
-# Download wordlists and username lists
+### Download Wordlists & Username Lists
+```powershell
 $wordlistUrl = 'https://github.com/danielmiessler/SecLists/archive/master.zip'
 Invoke-WebRequest -Uri $wordlistUrl -OutFile "$env:TEMP\SecLists.zip"
 Expand-Archive -Path "$env:TEMP\SecLists.zip" -DestinationPath "$env:USERPROFILE\Desktop\SecLists"
+```
 
-# Install TrackView on Windows
+### Install TrackView on Windows
+```powershell
 $trackviewInstaller = 'http://trackview.net/download/TrackViewSetup.exe'
 Invoke-WebRequest -Uri $trackviewInstaller -OutFile "$env:TEMP\TrackViewSetup.exe"
 Start-Process -FilePath "$env:TEMP\TrackViewSetup.exe" -ArgumentList '/quiet' -Wait
+```
 
-# Download Android and iOS simulators
+### Download Android & iOS Simulators
+```powershell
 $androidSimulatorUrl = 'https://www.osboxes.org/android-x86/'
 $iosSimulatorUrl = 'https://appetize.io/demo'
+```
 
-# Download Android simulator
+### Download Android simulator
+```powershell
 Invoke-WebRequest -Uri $androidSimulatorUrl -OutFile "$env:TEMP\android-x86.ova"
+```
 
-# Download iOS simulator
+### Download iOS Simulator
+```powershell
 Invoke-WebRequest -Uri $iosSimulatorUrl -OutFile "$env:TEMP\ios-simulator.ova"
+```
 
-# Install VirtualBox on Windows
+### Install VirtualBox on Windows
+```powershell
 choco install virtualbox -y
+```
 
-# Import Android simulator into VirtualBox
+### Import Android simulator into VirtualBox
+```powershell
 Start-Process -FilePath "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" -ArgumentList "import $env:TEMP\android-x86.ova" -Wait
+```
 
-# Import iOS simulator into VirtualBox
+### Import iOS Simulator into VirtualBox
+```powershell
 Start-Process -FilePath "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" -ArgumentList "import $env:TEMP\ios-simulator.ova" -Wait
+```
 
-# Install VirtualBox on Kali Linux
+### Install VirtualBox on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y virtualbox
 "
+```
 
-# Import Android simulator into VirtualBox on Kali Linux
+### Import Android simulator into VirtualBox on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 VBoxManage import /mnt/c/Users/$env:USERNAME/TEMP/android-x86.ova
 "
+```
 
-# Import iOS simulator into VirtualBox on Kali Linux
+### Import iOS simulator into VirtualBox on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 VBoxManage import /mnt/c/Users/$env:USERNAME/TEMP/ios-simulator.ova
 "
+```
 
-# Set up advanced Nmap scans on Windows
+### Set up advanced Nmap scans on Windows
+```powershell
 $nmapScriptPath = "$env:USERPROFILE\Desktop\nmap_scan.ps1"
 $nmapScriptContent = @"
 param (
@@ -378,16 +412,20 @@ param (
 nmap -sS -sU -p- -A -O -oN `"$env:USERPROFILE\Desktop\nmap_scan.txt`" `$targetIp
 "@
 Set-Content -Path $nmapScriptPath -Value $nmapScriptContent
+```
 
-# Set up advanced Nmap scans on Kali Linux
+### Set up advanced Nmap scans on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 echo 'param (
     [string]`$targetIp
 )
 nmap -sS -sU -p- -A -O -oN `"/root/nmap_scan.txt`" `$targetIp' > /root/nmap_scan.ps1
 "
+```
 
-# Set up script to import Nmap scans into Armitage and launch Armitage on Windows
+### Set up script to import Nmap scans into Armitage and launch Armitage on Windows
+```powershell
 $armitageScriptPath = "$env:USERPROFILE\Desktop\armitage_import.ps1"
 $armitageScriptContent = @"
 param (
@@ -396,16 +434,20 @@ param (
 & `"$env:ProgramFiles\Armitage\armitage.bat`"
 "@
 Set-Content -Path $armitageScriptPath -Value $armitageScriptContent
+```
 
-# Set up script to import Nmap scans into Armitage and launch Armitage on Kali Linux
+### Set up script to import Nmap scans into Armitage and launch Armitage on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 echo 'param (
     [string]`$targetIp
 )
 armitage' > /root/armitage_import.ps1
 "
+```
 
-# Set up script to import Nmap scans into Metasploit and run vulnerability checks on Windows
+### Set up script to import Nmap scans into Metasploit and run vulnerability checks on Windows
+```powershell
 $metasploitScriptPath = "$env:USERPROFILE\Desktop\metasploit_import.ps1"
 $metasploitScriptContent = @"
 param (
@@ -414,55 +456,75 @@ param (
 msfconsole -x 'db_import `"$env:USERPROFILE\Desktop\nmap_scan.txt`"; vulns'
 "@
 Set-Content -Path $metasploitScriptPath -Value $metasploitScriptContent
+```
 
-# Set up script to import Nmap scans into Metasploit and run vulnerability checks on Kali Linux
+### Set up script to import Nmap scans into Metasploit and run vulnerability checks on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 echo 'param (
     [string]`$targetIp
 )
 msfconsole -x `"'db_import /root/nmap_scan.txt; vulns`"'' > /root/metasploit_import.ps1
 "
+```
 
-# Set Kali user name and password
+### Set Kali user name and password
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 echo 'kali:kali' | chpasswd
 echo 'root:password' | chpasswd
 "
+```
 
-# Enable RDP on Windows
+### Enable RDP on Windows
+```powershell
 Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
 Enable-NetFirewallRule -DisplayGroup 'Remote Desktop'
+```
 
-# Enable VNC on Kali Linux
+### Enable VNC on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y tightvncserver
 tightvncserver :1
 "
+```
 
-# Install FTP server on Windows
+### Install FTP server on Windows
+```powershell
 choco install filezilla -y
+```
 
-# Install FTP server on Kali Linux
+### Install FTP server on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y vsftpd
 systemctl enable vsftpd
 systemctl start vsftpd
 "
+```
 
-# Install SFTP server on Windows
+### Install SFTP server on Windows
+```powershell
 choco install openssh -y
+```
 
-# Install SFTP server on Kali Linux
+### Install SFTP server on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y openssh-server
 systemctl enable ssh
 systemctl start ssh
 "
+```
 
-# Install XMPP server on Windows
+### Install XMPP server on Windows
+```powershell
 choco install prosody -y
+```
 
-# Install XMPP server on Kali Linux
+### Install XAMPP server on Kali Linux
+```powershell
 wsl -d kali-linux -u root -- bash -c "
 apt update && apt install -y prosody
 systemctl enable prosody
